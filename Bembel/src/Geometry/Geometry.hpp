@@ -94,6 +94,8 @@ class Geometry {
       tmp = PatchShredder(LoadGeometryFileDAT(filename));
     else if (file_suffix.compare("igs") == 0)
       tmp = PatchShredder(LoadGeometryFileIGS(filename));
+    else if (file_suffix.compare("stp") == 0 | file_suffix.compare("step") == 0)
+      tmp = PatchShredder(LoadGeometryFileSTEP(filename));
     else
       assert(!"File type unknown!");
 

@@ -58,19 +58,117 @@ the framework of isogeometric analysis for electromagnetics,
 equivalent to the H2 matrix format,
 * openMP parallelized matrix assembly,
 * Full compatibility with the [Eigen](http://eigen.tuxfamily.org/) linear algebra library.
+* Import and export methods for STEP files according to ISO standard 10303 to simulate your own geometries.
 
 ## 4. Known Bugs and Upcoming Features <a name="bugs"></a>
 
-Please send bug reports and feature requests via [issue tracker](https://github.com/temf/bembel/issues) on GitHub.
+Please send bug reports and feature requests via [issue tracker](https://github.com/Pero-ISt/bembel/issues) on GitHub.
 
 ## 5. Contributing to Bembel <a name="contributing"></a>
 
 Any contribution to this project in fixing a bug or implementing a feature is welcome.
-Create a fork of this repository and create a [pull request](https://github.com/temf/bembel/pulls).
+Create a fork of this repository and create a [pull request](https://github.com/Pero-ISt/bembel/pulls).
 To successfully merge your pull request you should follow our [Coding Guidelines](https://temf.github.io/bembel/Doxy_out/html/coding_guidelines.html)
 
 
-## 6. How to cite <a name="cite"></a>
+## 6. How to use the OpenCascade libary
+
+This project utilizes the OpenCascade (OCCT) library for STEP file handling. The required libraries are automatically linked using the provided CMake configuration. Follow the steps below to ensure that OpenCascade is properly set up on your system.
+
+### Local Installation  
+
+You need OpenCascade installed on your system. You can either install it via your system's package manager or build it from source. On Ubuntu-based systems, you can install it with:
+```bash 
+     sudo apt install libocct-foundation-dev libocct-data-exchange-dev libocct-modeling-algorithms-dev libocct-modeling-data-dev libocct-ocaf-dev
+```
+Alternatively, you can download and build OpenCascade from the official website: [OpenCascade Technology](https://dev.opencascade.org/). 
+
+In some cases you need to install ```libtbb-dev``` an development package for Intel's Threading Building Blocks (TBB). It is a library that provides high-level abstractions for parallel programming. On Ubuntu-based systems, you can install it with:
+```bash 
+     sudo apt install libtbb-dev
+```
+After installing, you can use the CMake files to compile the code.
+
+### Docker Installation
+
+You can use Docker to create a clean and isolated Ubuntu environment to build and run this project. Below are the steps to set up the required tools and libraries using Docker.
+
+#### Step-by-Step Instructions
+
+1. **Pull and Run an Ubuntu Docker Container**
+
+   Start by running an interactive Ubuntu container:
+
+   ```bash
+   sudo docker run -it ubuntu
+   ```
+
+   This will pull the latest Ubuntu image and give you an interactive shell inside the container.
+
+2. **Update Package Lists**
+
+   Inside the Docker container, run the following command to update the package lists:
+
+   ```bash
+   apt update
+   ```
+
+3. **Install Required Development Tools and Libraries**
+
+   Install Git, CMake, GCC/G++, and Eigen3:
+
+   ```bash
+   apt install git cmake g++ libeigen3-dev -y
+   ```
+
+4. **Install OpenCascade Libraries**
+
+   Install the necessary OpenCascade libraries for working with STEP files and 3D geometry:
+
+   ```bash
+   apt install libocct-data-exchange-dev libocct-foundation-dev libocct-modeling-algorithms-dev libocct-modeling-data-dev libocct-ocaf-dev -y
+   ```
+
+5. **Install Intel's Threading Building Blocks (TBB)**
+
+   Install the TBB library for parallelization:
+
+   ```bash
+   apt install libtbb-dev -y
+   ```
+
+6. **Clone the Repository**
+
+   Clone the project repository inside the Docker container:
+
+   ```bash
+   git clone "https://github.com/Pero-ISt/bembel.git"
+   ```
+
+7. **Build the Project**
+
+   Navigate into the cloned repository directory:
+
+   ```bash
+   cd bembel
+   ```
+
+   Generate the build files with CMake:
+
+   ```bash
+   cmake -B build .
+   ```
+
+   Build the project using CMake:
+
+   ```bash
+   cmake --build build --config release
+   ```
+
+If you need to preserve the container state, you can commit the container to an image and run it again later. For more advanced Docker usage, see Docker's [official documentation](https://docs.docker.com/).
+
+
+## 7. How to cite <a name="cite"></a>
 
 <a name="1">[1]</a> J. Dölz, H. Harbrecht, S. Kurz, M. Multerer, S. Schöps, and F. Wolf. *Bembel: The Fast Isogeometric Boundary Element C++ Library for Laplace, Helmholtz, and Electric Wave Equation*. In: SoftwareX, 11, 10476.
 [![doi badge](https://img.shields.io/badge/DOI-10.1016/j.softx.2020.100476-blue)](https://doi.org/10.1016/j.softx.2020.100476)

@@ -15,7 +15,8 @@ set(EXAMPLES
 
 foreach(file IN LISTS EXAMPLES)
   add_executable(${file} ${file}.cpp)
-  target_link_libraries(${file} Eigen3::Eigen)
+  target_link_libraries(${file} Eigen3::Eigen TKernel TKXSBase TKBRep TKGeomBase TKSTEP TKTopAlgo TKGeomAlgo TKG3d TKMath)
+  include_directories(/usr/include/opencascade)
   add_test(${file}Unittest ${file})
   set_tests_properties(${file}Unittest PROPERTIES LABELS "unittests")
 endforeach()

@@ -1,6 +1,7 @@
 
 # copy geometry files for testing
 configure_file(${CMAKE_SOURCE_DIR}/geo/sphere.dat ${CMAKE_CURRENT_BINARY_DIR}/ COPYONLY)
+configure_file(${CMAKE_SOURCE_DIR}/geo/sphere.stp ${CMAKE_CURRENT_BINARY_DIR}/ COPYONLY)
 configure_file(${CMAKE_SOURCE_DIR}/geo/torus.dat ${CMAKE_CURRENT_BINARY_DIR}/ COPYONLY)
 configure_file(${CMAKE_SOURCE_DIR}/geo/cube_small.dat ${CMAKE_CURRENT_BINARY_DIR}/ COPYONLY)
 
@@ -12,9 +13,11 @@ set(CIFILES
     AnsatzSpace
     BlockClusterTree
     Geometry
+    GeometrySTEP
     MassMatrix
     LaplaceBeltrami
     LaplaceSingleLayerFull
+    LaplaceSingleLayerFullSTEP
     LaplaceSingleLayerH2
     LaplaceHypersingularH2
     LaplaceDoubleLayerH2
@@ -33,7 +36,8 @@ set(CIFILES
 
 foreach(file IN LISTS CIFILES)
   add_executable(${file} ${file}.cpp)
-  target_link_libraries(${file} Eigen3::Eigen)
+  target_link_libraries(${file} Eigen3::Eigen TKernel TKXSBase TKBRep TKGeomBase TKSTEP TKTopAlgo TKGeomAlgo TKG3d TKMath)
+  include_directories(/usr/include/opencascade)
   add_test(${file}Example ${file})
   set_tests_properties(${file}Example PROPERTIES LABELS "E2Etests")
 endforeach()
@@ -57,5 +61,6 @@ set(NOCIFILES
 
   foreach(file IN LISTS NOCIFILES)
   add_executable(${file} ${file}.cpp)
-  target_link_libraries(${file} Eigen3::Eigen)
+  target_link_libraries(${file} Eigen3::Eigen TKernel TKXSBase TKBRep TKGeomBase TKSTEP TKTopAlgo TKGeomAlgo TKG3d TKMath)
+  include_directories(/usr/include/opencascade)
 endforeach()

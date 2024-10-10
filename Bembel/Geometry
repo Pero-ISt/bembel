@@ -34,6 +34,16 @@
 #include <algorithm>
 #include <ctime>
 
+#include <STEPControl_Reader.hxx>
+#include <STEPControl_Writer.hxx>
+#include <Geom_BSplineSurface.hxx>
+#include <TopoDS.hxx>
+#include <TopExp_Explorer.hxx>
+#include <BRep_Tool.hxx>
+#include <BRepBuilderAPI_MakeFace.hxx>
+#include <Interface_Static.hxx>
+#include <BRep_Builder.hxx>
+
 #include <Eigen/Dense>
 #include <Eigen/Sparse>
 
@@ -45,6 +55,7 @@
 #include "src/Geometry/PatchVector.hpp"
 #include "src/Geometry/GeometryIO.hpp"
 #include "src/Geometry/GeometryIGS.hpp"
+#include "src/Geometry/GeometrySTEP.hpp"
 #include "src/Geometry/Geometry.hpp"
 
 #endif  // BEMBEL_GEOMETRY_MODULE_

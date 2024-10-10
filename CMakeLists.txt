@@ -102,6 +102,13 @@ message(STATUS "Found -fopenmp, adding option to builds of type >Release< only")
 set (CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -fopenmp")
 endif()
 
+find_package(OpenCASCADE REQUIRED)
+if(OpenCASCADE_FOUND)
+    message(STATUS "Found OpenCascade")
+else()
+    message(FATAL_ERROR "OpenCascade not found. Please install OpenCascade.")
+endif()
+
 set(CMAKE_CXX_FLAGS_COVERAGE "-g -fPIC -fprofile-arcs -ftest-coverage" CACHE STRING
     "Flags used by the coverage test."
     FORCE)
