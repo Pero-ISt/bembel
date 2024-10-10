@@ -20,7 +20,8 @@ information. -->
 3. [Features](#features)
 4. [Known Bugs and Upcoming Features](#bugs)
 5. [Contributing to Bembel](#contributing)
-6. [How to cite](#cite)
+6. [How to use the OpenCascade libary](#opencascade)
+7. [How to cite](#cite)
 
 ## 1. Introduction <a name="introduction"></a>
 
@@ -71,7 +72,7 @@ Create a fork of this repository and create a [pull request](https://github.com/
 To successfully merge your pull request you should follow our [Coding Guidelines](https://temf.github.io/bembel/Doxy_out/html/coding_guidelines.html)
 
 
-## 6. How to use the OpenCascade libary
+## 6. How to use the OpenCascade libary <a name="opencascade"></a>
 
 This project utilizes the OpenCascade (OCCT) library for STEP file handling. The required libraries are automatically linked using the provided CMake configuration. Follow the steps below to ensure that OpenCascade is properly set up on your system.
 
